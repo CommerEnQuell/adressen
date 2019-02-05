@@ -5,10 +5,12 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.stereotype.Service;
 
 import nl.commerquell.adressen.dao.AdresRepository;
 import nl.commerquell.adressen.entity.Adres;
 
+@Service
 public class AdresServiceImpl implements AdresService {
 	
 	private AdresRepository adresRepository;

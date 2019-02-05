@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>Personenlijst</title>
+
+	    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!--  Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+	</head>
+	
+	<body>
+		<div class="container">
+			<h2>Lijst van personen</h2>
+			<hr>
+			<a th:href="@{/adressenboek/personen/voegPersoonToe}" class="btn btn-primary btn-sm mb-3">
+				Persoon toevoegen
+			</a>
+			<hr>
+			<table class="table table-bordered table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Voornaam</th>
+						<th align="center">Voorv.</th>
+						<th>Achternaam</th>
+						<th align="center">M/V</th>
+						<th>Geboren d.d.</th>
+						<th>Mobiel</th>
+						<th>E-mail</th>
+						<th></th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="iemand : ${personen}">
+						<td th:text="${iemand.voornaam}" />
+						<td align="center" th:text="${iemand.voorvoegsel}" />
+						<td th:text="${iemand.achternaam}" />
+						<td align="center" th:text="${iemand.gender}" />
+						<td th:text="${iemand.gebdat}" />
+						<td th:text="${iemand.mobielTelnr}" />
+						<td th:text="${iemand.email}" />
+						<td><a th:href="@{/adressenboek/personen/wijzigPersoon/{id}(id=${iemand.id})}" class="btn btn-primary">Wijzig</a></td>
+						<td><a th:href="@{/adressenboek/personen/verwijderPersoon/{id}(id=${iemand.id})}" class="btn btn-danger">Verwijder</a></td>
+						<td><a th:href="@{/adressenboek/personen/}" class="btn btn-warning">Adres</a></td>
+					</tr>
+					
+				</tbody>
+			</table>
+			<hr>
+			<a th:href="@{/adressenboek/}" class="btn btn-link btn-sm mb-3">
+				Homepage
+			</a>
+		</div>
+	</body>
+</html>

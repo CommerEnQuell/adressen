@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org"></html>
+
+	<head>
+		<title>Foute boel</title>
+
+	    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!--  Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+	</head>
+	
+	<body>
+	<div class="container">
+			<h3>Er is een fout opgetreden</h3>
+			<hr>
+			<p>
+			
+			<table class="table table-bordered">
+				<tbody>
+					<tr>
+						<td>Exception</td>
+						<td th:text="${error}" />
+					</tr>
+					<tr>
+						<td>Melding</td>
+						<td th:text="${message}" />
+					</tr>
+				</tbody>
+			</table>
+
+	`	<p>
+		<hr>
+		<p>
+		<a th:href="@{/adressenboek/}">Terug naar homepage</a>
+
+	</div>

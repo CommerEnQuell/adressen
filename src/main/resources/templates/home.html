@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>Adressenboek</title>
+
+	    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!--  Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+	</head>
+	
+	<body>
+		<div class="container">
+			<h1>Robert's adressenboek</h1>
+			<hr>
+			<a th:href="@{/adressenboek/personen/}" class="btn btn-success btn-sm mb-3">
+				Personenlijst
+			</a>
+			<p>
+			<a th:href="@{/adressenboek/adressen/}" class="btn btn-primary btn-sm mb-3">
+				Adressenlijst
+			</a>
+		</div>
+	</body>
+</html>
