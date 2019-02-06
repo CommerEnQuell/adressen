@@ -1,10 +1,14 @@
 package nl.commerquell.adressen.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -36,6 +40,9 @@ public class Adres {
 	
 	@Column(name="telnr_vast")
 	private String telnrVast;
+	
+	@OneToMany(cascade={CascadeType.DETACH, CascadeType.REFRESH, CascadeType.MERGE, CascadeType.PERSIST}, mappedBy="adres")
+	private List<PersoonAdres> persoonAdressen;
 
 	public int getId() {
 		return id;

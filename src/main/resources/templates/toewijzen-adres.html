@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>Toewijzen adres</title>
+
+	    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!--  Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+	</head>
+	
+	<body>
+		<div class="container">
+			<h2 th:text="${'Toewijzen adres aan ' + persoon.voornaam + ' ' + persoon.voorvoegsel + ' ' + persoon.achternaam}" />
+			<hr>
+			<a th:href="@{/adressenboek/personen/wijsNieuwAdresToe/{pernId}(pernId=${persoon.id})}" class="btn btn-primary mb-3">
+				Nieuw adres toewijzen
+			</a>
+			<hr>
+			<table class="table table-bordered table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Straat</th>
+						<th align="right">Huisnr</th>
+						<th>Toev</th>
+						<th>Postcode</th>
+						<th>Plaats</th>
+						<th>Land</th>
+						<th>Telnr.</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="eenAdres : ${adressen}">
+						<td th:text="${eenAdres.straat}" />
+						<td align="right" th:text="${eenAdres.huisnr}" />
+						<td th:text="${eenAdres.huisnrToev}" />
+						<td th:text="${eenAdres.postcode}" />
+						<td th:text="${eenAdres.plaats}" />
+						<td th:text="${eenAdres.landafk}" />
+						<td th:text="${eenAdres.telnrVast}" />
+						<td><a th:href="@{/adressenboek/personen/toewijzenAdres/{pernId}/{adrsId}(pernId=${persoon.id}, adrsId=${eenAdres.id})}" class="btn btn-success">Toewijzen</a></td>
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+			<a th:href="@{/adressenboek/}" class="btn btn-link btn-sm mb-3">
+				Homepage
+			</a>
+			
+		</div>
+	</body>
+</html>

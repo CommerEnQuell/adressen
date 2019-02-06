@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org"></html>
+
+	<head>
+		<title>Toewijzen nieuw adres</title>
+
+	    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!--  Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+	</head>
+	
+	<body>
+	<div class="container">
+		<h2 th:text="'Toevoegen Adres van ' + ${persoon.voornaam} + ' ' + ${persoon.voorvoegsel} + ' ' + ${persoon.achternaam}" />
+		<hr>
+		<form action="#" th:action="@{/adressenboek/personen/nieuwAdresToewijzen/{pernId}(pernId=${persoon.id})}" th:object="${adres}" method="POST">
+			<input type="hidden" th:field="*{id}">
+			<input type="text" th:field="*{straat}" placeholder="Straat" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{huisnr}" placeholder="Huisnr" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{huisnrToev}" placeholder="Toev." class="form-control mb-4 col-4">
+			<input type="text" th:field="*{postcode}" placeholder="Postcode" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{plaats}" placeholder="Plaats" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{landafk}" placeholder="Land" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{telnrVast}" placeholder="Telefoon" class="form-control mb-4 col-4">
+			<button type="submit" class="btn btn-success col-2">Opslaan en toewijzen</button>
+		</form>
+
+	`	<p>
+		<a th:href="@{/adressenboek/adressen/}" class="btn btn-link mb-3">Terug naar adressenlijst</a>
+	
+	</div>
+</body>

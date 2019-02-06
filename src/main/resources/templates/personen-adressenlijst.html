@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 	<head>
-		<title>Personenlijst</title>
+		<title>Personen met adressen</title>
 
 	    <!-- Required meta tags -->
 	    <meta charset="utf-8">
@@ -14,11 +14,7 @@
 	
 	<body>
 		<div class="container">
-			<h2>Lijst van personen</h2>
-			<hr>
-			<a th:href="@{/adressenboek/personen/voegPersoonToe}" class="btn btn-primary btn-sm mb-3">
-				Persoon toevoegen
-			</a>
+			<h2>Lijst van personen met adressen</h2>
 			<hr>
 			<table class="table table-bordered table-striped">
 				<thead class="thead-dark">
@@ -26,12 +22,10 @@
 						<th>Voornaam</th>
 						<th align="center">Voorv.</th>
 						<th>Achternaam</th>
-						<th align="center">M/V</th>
-						<th>Geboren d.d.</th>
-						<th>Mobiel</th>
-						<th>E-mail</th>
-						<th></th>
-						<th></th>
+						<th>Straat</th>
+						<th>Huisnr</th>
+						<th>Postcode</th>
+						<th>Woonplaats</th>
 						<th></th>
 					</tr>
 				</thead>
@@ -40,13 +34,11 @@
 						<td th:text="${iemand.voornaam}" />
 						<td align="center" th:text="${iemand.voorvoegsel}" />
 						<td th:text="${iemand.achternaam}" />
-						<td align="center" th:text="${iemand.gender}" />
-						<td th:text="${iemand.gebdat}" />
-						<td th:text="${iemand.mobielTelnr}" />
-						<td th:text="${iemand.email}" />
-						<td><a th:href="@{/adressenboek/personen/wijzigPersoon/{id}(id=${iemand.id})}" class="btn btn-primary">Wijzig</a></td>
-						<td><a th:href="@{/adressenboek/personen/verwijderPersoon/{id}(id=${iemand.id})}" class="btn btn-danger">Verwijder</a></td>
-						<td><a th:href="@{/adressenboek/personen/wijsAdresToe/{id}(id=${iemand.id})}" class="btn btn-warning">Adres</a></td>
+						<td th:text="${iemand.persoonAdres.adres.straat}" />
+						<td th:text="${iemand.persoonAdres.adres.huisnr + ' ' + iemand.persoonAdres.adres.huisnrToev}" />
+						<td th:text="${iemand.persoonAdres.adres.postcode}" />
+						<td th:text="${iemand.persoonAdres.adres.plaats}" />
+						<td><a th:href="@{/adressenboek/query/details/{id}(id=${iemand.id})}" class="btn btn-outline-danger">Details</a></td>
 					</tr>
 					
 				</tbody>

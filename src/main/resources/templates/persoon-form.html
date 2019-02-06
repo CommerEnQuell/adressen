@@ -15,12 +15,14 @@
 	
 	<body>
 	<div class="container">
+		<h2>Toevoegen / Wijzigen Persoon</h2>
+		<hr>
 		<form action="#" th:action="@{/adressenboek/personen/savePersoon}" th:object="${persoon}" method="POST">
 			<input type="hidden" th:field="*{id}">
-			<input type="text" th:field="*{voornaam}" placeholder="Voornaam" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{voornaam}" placeholder="Voornaam (*)" class="form-control mb-4 col-4">
 			<input type="text" th:field="*{voorvoegsel}" placeholder="Voorvoegsel" class="form-control mb-4 col-4">
-			<input type="text" th:field="*{achternaam}" placeholder="Achternaam" class="form-control mb-4 col-4">
-			<input type="text" th:field="*{gender}" placeholder="M/V" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{achternaam}" placeholder="Achternaam (*)" class="form-control mb-4 col-4">
+			<input type="text" th:field="*{gender}" placeholder="M/V (*)" class="form-control mb-4 col-4">
 			<input type="text" th:field="*{gebdat}" placeholder="Geboren d.d." class="form-control mb-4 col-4">
 			<input type="text" th:field="*{mobielTelnr}" placeholder="Mobiel" class="form-control mb-4 col-4">
 			<input type="text" th:field="*{email}" placeholder="E-mail" class="form-control mb-4 col-4">
@@ -28,7 +30,7 @@
 		</form>
 
 	`	<p>
-		<a th:href="@{/adressenboek/personen/}" class="btn btn-link btn-sm mb-3">Terug naar personenlijst</a>
+		<a th:href="@{/adressenboek/personen/}" class="btn btn-link mb-3">Terug naar personenlijst</a>
 	
 	</div>
 </body>

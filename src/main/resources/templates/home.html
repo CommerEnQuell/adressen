@@ -16,13 +16,23 @@
 		<div class="container">
 			<h1>Robert's adressenboek</h1>
 			<hr>
-			<a th:href="@{/adressenboek/personen/}" class="btn btn-success btn-sm mb-3">
-				Personenlijst
-			</a>
-			<p>
-			<a th:href="@{/adressenboek/adressen/}" class="btn btn-primary btn-sm mb-3">
+			<h3>Gebruikerszone</h3>
+			<a th:href="@{/adressenboek/query/}" class="btn btn-dark mb-3">
 				Adressenlijst
 			</a>
+			<hr>
+			<h3>Admin zone</h3>
+			<hr>
+			<a th:href="@{/adressenboek/personen/}" class="btn btn-success mb-3">
+				Gegevens Personen
+			</a>
+			<p>
+			<a th:href="@{/adressenboek/adressen/}" class="btn btn-primary mb-3">
+				Gegevens Adressen
+			</a>
+			<hr>
+			<p>
+			&copy; <i>2019 Commer & Quell</i>
 		</div>
 	</body>
 </html>

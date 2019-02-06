@@ -1,18 +1,16 @@
 package nl.commerquell.adressen.entity;
 
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Convert;
-import javax.persistence.Converter;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import nl.commerquell.adressen.utils.DateToStringConverter;
-import nl.commerquell.adressen.utils.Utils;
 
 @Entity
 @Table(name="persoon")
@@ -32,7 +30,6 @@ public class Persoon {
 	@Column(name="achternaam")
 	private String achternaam;
 	
-	
 	@Column(name="gender")	
 	private String gender;
 	
@@ -45,6 +42,10 @@ public class Persoon {
 	
 	@Column(name="telnr_mobiel")
 	private String mobielTelnr;
+	
+	@OneToOne
+	@JoinColumn(name="id", unique=true, nullable=false, updatable=false)
+	private PersoonAdres persoonAdres;
 	
 //	private String gebdatAlfa;
 
@@ -111,7 +112,16 @@ public class Persoon {
 	public void setMobielTelnr(String mobielTelnr) {
 		this.mobielTelnr = mobielTelnr;
 	}
-/*
+	
+	public PersoonAdres getPersoonAdres() {
+		return persoonAdres;
+	}
+
+	public void setPersoonAdres(PersoonAdres persoonAdres) {
+		this.persoonAdres = persoonAdres;
+	}
+
+	/*
 	public String getGebdatAlfa() {
 		if (this.gebdat == null) {
 			this.gebdatAlfa = "";

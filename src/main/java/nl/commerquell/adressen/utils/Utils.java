@@ -152,4 +152,15 @@ public final class Utils {
 
 		return fauxFormat;
 	}
+	
+	public static Object nvl(Object value, Object valueIfNull) {
+		if (valueIfNull == null) {
+			throw new IllegalArgumentException("Een NVL-functie mag geen NULL voor een NULL substitueren");
+		}
+		Object retval = value;
+		if (retval == null) {
+			retval = valueIfNull;
+		}
+		return retval;
+	}
 }

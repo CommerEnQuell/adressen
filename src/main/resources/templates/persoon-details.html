@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org"></html>
+
+	<head>
+		<title>Verwijderen persoon</title>
+
+	    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!--  Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+	</head>
+	
+	<body>
+		<div class="container">
+			<h2 th:text="${'Details voor ' + persoon.voornaam + ' ' + persoon.voorvoegsel + ' ' + persoon.achternaam}" />
+			<hr>
+			<table class="table">
+			    <tbody>
+			    	<tr><td colspan="2"><h3>Persoonsgegevens</h3></td></tr>
+					<tr><td>Voornaam:</td> <td th:text="${persoon.voornaam}" /></tr>
+					<tr><td>Voorvoegsel:</td> <td th:text="${persoon.voorvoegsel}" /></tr>
+					<tr><td>Achternaam:</td> <td th:text="${persoon.achternaam}" /></tr>
+					<tr><td>Geslacht:</td> <td th:text="${persoon.gender}" /></tr>
+					<tr><td>Geboren:</td> <td th:text="${persoon.gebdat}" /></tr>
+					<tr><td>Mobiel:</td> <td th:text="${persoon.mobielTelnr}" /></tr>
+					<tr><td>E-mail:</td> <td th:text="${persoon.email}" /></tr>
+			    	<tr><td colspan="2"><h3>Adresgegevens</h3></td></tr>
+					<tr><td>Straat:</td> <td th:text="${adres.straat}" /></tr>
+					<tr><td>Huisnummer:</td> <td th:text="${adres.huisnr}" /></tr>
+					<tr><td>Toevoeging:</td> <td th:text="${adres.huisnrToev}" /></tr>
+					<tr><td>Postcode:</td> <td th:text="${adres.postcode}" /></tr>
+					<tr><td>Woonplaats:</td> <td th:text="${adres.plaats}" /></tr>
+					<tr><td>Land:</td> <td th:text="${adres.landafk}" /></tr>
+					<tr><td>Telefoon:</td> <td th:text="${adres.telnrVast}" /></tr>
+				</tbody>
+			</table>
+			<hr>
+		`	<p>
+			<a th:href="@{/adressenboek/query/}" class="btn btn-link mb-3">Terug naar lijst</a>
+	
+		</div>
+	</body>
+</html>
