@@ -130,7 +130,6 @@ public class PersoonController {
 	@PostMapping("/nieuwAdresToewijzen/{pernId}")
 	public String savePersoonAdres(@PathVariable("pernId") int pernId, @ModelAttribute("adres") Adres hetAdres) {
 		List<Adres> andereAdressen = adresService.find(hetAdres.getPostcode(), hetAdres.getHuisnr());
-		int adrsId = 0;
 		boolean found = false;
 		Adres nieuwAdres = hetAdres;
 		if (andereAdressen != null && !andereAdressen.isEmpty()) {

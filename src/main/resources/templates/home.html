@@ -16,20 +16,33 @@
 		<div class="container">
 			<h1>Robert's adressenboek</h1>
 			<hr>
-			<h3>Gebruikerszone</h3>
+			<!-- 
+			<p>Logged in as: <b><div sec:authentication="username"></div></b>
+			<hr>
+ 			-->
+ 			<h3>Reader Zone</h3>
 			<a th:href="@{/adressenboek/query/}" class="btn btn-dark mb-3">
 				Adressenlijst
 			</a>
 			<hr>
-			<h3>Admin zone</h3>
-			<hr>
-			<a th:href="@{/adressenboek/personen/}" class="btn btn-success mb-3">
-				Gegevens Personen
-			</a>
+			<div sec:authorize="hasRole('USER')">
+				<h3>User zone</h3>
+				<hr>
+				<a th:href="@{/adressenboek/personen/}" class="btn btn-success mb-3">
+					Gegevens Personen
+				</a>
+				<p>
+				<a th:href="@{/adressenboek/adressen/}" class="btn btn-primary mb-3">
+					Gegevens Adressen
+				</a>
+				</p>
+				<hr>
+			</div>
 			<p>
-			<a th:href="@{/adressenboek/adressen/}" class="btn btn-primary mb-3">
-				Gegevens Adressen
-			</a>
+			<form action="#" th:action="@{/logout}" method="POST">
+				<input type="submit" class="btn btn-danger" value="Logout" />
+			</form>
+			<p>
 			<hr>
 			<p>
 			&copy; <i>2019 Commer & Quell</i>

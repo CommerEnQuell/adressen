@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org"></html>
+
+	<head>
+		<title>Inloggen t.b.v. adresboek</title>
+
+	    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!--  Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+	</head>
+	
+	<body>
+	<div class="container">
+		<h2>Login</h2>
+		<hr>
+		<form action="#" th:action="@{/authenticateTheUser}" method="POST">
+			<input type="text" th:name="username" placeholder="Gebruiker" class="form-control mb-4 col-4">
+			<input type="password" th:name="password" placeholder="Wachtwoord" class="form-control mb-4 col-4">
+			<button type="submit" class="btn btn-info col-2">Login</button>
+		</form>
+
+	`	<p>
+		<a th:href="@{/adressenboek/adressen/}" class="btn btn-link btn-sm mb-3">Terug naar adressenlijst</a>
+	
+	</div>
+</body>

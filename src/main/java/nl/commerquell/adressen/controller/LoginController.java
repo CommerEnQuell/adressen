@@ -4,12 +4,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping("/adressenboek")
+@RequestMapping("/adressenboek/login")
 @Controller
-public class HomeController {
+public class LoginController {
 	
 	@GetMapping("/")
-	public String goHome() {
-		return "home";
+	public String doLogin() {
+		return "login-form";
+	}
+
+
+	@GetMapping("/access-denied")
+	public String showAccessDenied() {
+		return "access-denied";
 	}
 }
