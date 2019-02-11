@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>Gebruikers</title>
+
+	    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!--  Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+	</head>
+	
+	<body>
+		<div class="container">
+			<h2>Lijst van gebruikers</h2>
+			<hr>
+			<a th:href="@{/adressenboek/users/addUser}" class="btn btn-primary btn-sm mb-3">
+				Gebruiker toevoegen
+			</a>
+			<hr>
+			<table class="table table-bordered table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Naam</th>
+						<th align="right">Wachtwoord</th>
+						<th>Actief?</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="aUser : ${users}">
+						<td th:text="${aUser.username}" />
+						<td th:text="${aUser.password}" />
+						<td><span th:if="${aUser.enabled} == true">Ja</span><span th:if="${aUser.enabled} == false">Nee</span></td>
+						<td><a th:href="@{/adressenboek/users/modifyUser/{username}(username=${aUser.username})}" th:unless="${aUser.username} == 'admin'" class="btn btn-primary">Wijzig</a></td>
+						<td><a th:href="@{/adressenboek/adressen/deleteUser/{username}(username=${aUser.username})}" th:unless="${aUser.username} == 'admin'" class="btn btn-danger">Verwijder</a></td>
+					</tr>
+				</tbody>
+			</table>
+			<hr>
+			<a th:href="@{/adressenboek/}" class="btn btn-link btn-sm mb-3">
+				Homepage
+			</a>
+			
+		</div>
+	</body>
+</html>

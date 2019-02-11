@@ -4,6 +4,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.security.core.context.SecurityContext;
+import org.springframework.security.core.userdetails.User;
+
 public final class Utils {
 	private Utils() {}
 	
@@ -162,5 +167,21 @@ public final class Utils {
 			retval = valueIfNull;
 		}
 		return retval;
+	}
+	
+	public static boolean isBlankOrEmpty(String s) {
+		boolean retval = false;
+		if (s == null) {
+			retval = true;
+		} else if (s.trim().length() < 1) {
+			retval = true;
+		}
+		return retval;
+	}
+	
+	public static User getUserFromSession(HttpSession session) {
+		SecurityContext context = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
+		User theUser = (User) context.getAuthentication().getPrincipal();
+		return theUser;
 	}
 }

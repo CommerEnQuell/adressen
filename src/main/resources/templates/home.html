@@ -16,17 +16,25 @@
 		<div class="container">
 			<h1>Robert's adressenboek</h1>
 			<hr>
-			<!-- 
-			<p>Logged in as: <b><div sec:authentication="username"></div></b>
+			<p>
+			<table>
+				<tr>
+					<td>Logged in as: <b><font color="#cc0033"><span th:text="${loginUser}"></span></font></b>
+					<td width="100" />
+					<td><a th:href="@{/adressenboek/login/password/{username}(username=${loginUser})}" class="btn btn-info btn-sm">Wachtwoord wijzigen</a></td>
+				</tr>
+			</table>
 			<hr>
- 			-->
- 			<h3>Reader Zone</h3>
-			<a th:href="@{/adressenboek/query/}" class="btn btn-dark mb-3">
-				Adressenlijst
-			</a>
-			<hr>
-			<div sec:authorize="hasRole('USER')">
-				<h3>User zone</h3>
+			<div th:if="${isReader} == true">
+				<h3 class="table-dark">Reader zone</h3>
+				<hr>
+				<a th:href="@{/adressenboek/query/}" class="btn btn-dark mb-3">
+					Adressenlijst
+				</a>
+				<hr>
+			</div>			
+			<div th:if="${isUser} == true">
+				<h3 class="table-dark">User zone</h3>
 				<hr>
 				<a th:href="@{/adressenboek/personen/}" class="btn btn-success mb-3">
 					Gegevens Personen
@@ -36,6 +44,15 @@
 					Gegevens Adressen
 				</a>
 				</p>
+				<hr>
+			</div>
+			<div th:if="${isAdmin} == true">
+				<h3 class="table-dark">Admin zone</h3>
+				<hr>
+				<a th:href="@{/adressenboek/users/}" class="btn btn-warning mb-3">
+					Gegevens Gebruikers
+				</a>
+				<p>
 				<hr>
 			</div>
 			<p>

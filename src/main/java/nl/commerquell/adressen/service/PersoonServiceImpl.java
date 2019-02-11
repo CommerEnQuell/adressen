@@ -33,7 +33,7 @@ public class PersoonServiceImpl implements PersoonService {
 
 	@Override
 	public List<Persoon> findAll() {
-		return persoonRepository.findAll();
+		return persoonRepository.findAllByOrderByAchternaamAscVoorvoegselAscVoornaamAsc();
 	}
 
 	@Override

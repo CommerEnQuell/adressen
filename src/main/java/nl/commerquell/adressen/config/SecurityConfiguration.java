@@ -22,11 +22,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeRequests()
-					.antMatchers("/adressenboek/").hasAnyRole("READER", "USER", "ADMIN")
+					.antMatchers("/adressenboek/").hasAnyRole("DUMBO", "READER", "USER", "ADMIN")
         			.antMatchers("/adressenboek/personen/**").hasAnyRole("USER", "ADMIN")
         			.antMatchers("/adressenboek/adressen/**").hasAnyRole("USER", "ADMIN")
         			.antMatchers("/adressenboek/query/**").hasAnyRole("READER", "USER", "ADMIN")
-        			.and()
+        			.antMatchers("/adressenboek/users/**").hasRole("ADMIN")
+					.antMatchers("/adressenboek/password/**").hasAnyRole("DUMBO", "READER", "USER", "ADMIN")
+      			.and()
         			.formLogin()
         				.loginPage("/adressenboek/login/")
         				.loginProcessingUrl("/authenticateTheUser")

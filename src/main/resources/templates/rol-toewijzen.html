@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org"></html>
+
+	<head>
+		<title>Toevoegen/Wijzigen Gebruiker</title>
+
+	    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!--  Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+	</head>
+	
+	<body>
+	<div class="container">
+		<h2 th:text="'Toevoegen Rol aan ' + ${role.username}" />
+		<hr>
+		<form action="#" th:action="@{/adressenboek/users/saveRole (username=${role.username})}" th:object="${role}" method="POST">
+			Rol: <input type="text" th:field="*{role}" placeholder="Rol (*)" class="form-control mb-4 col-4" />
+			<br><br>
+			<button type="submit" class="btn btn-info col-2">Opslaan</button>
+		</form>
+		<hr>
+		<a th:href="@{/adressenboek/users/}" class="btn btn-link btn-sm mb-3">Terug naar gebruikerslijst</a>
+	
+	</div>
+</body>

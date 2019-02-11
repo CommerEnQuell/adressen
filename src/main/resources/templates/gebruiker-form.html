@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org"></html>
+
+	<head>
+		<title>Toevoegen/Wijzigen Gebruiker</title>
+
+	    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!--  Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+	</head>
+	
+	<body>
+	<div class="container">
+		<h2>Toevoegen/Wijzigen Gebruiker</h2>
+		<hr>
+		<form action="#" th:action="@{/adressenboek/users/saveUser}" th:object="${user}" method="POST">
+			Gebruiker: <input type="text" th:field="*{username}" placeholder="Naam (*)" class="form-control mb-4 col-4" />
+			Wachtwoord: <input type="text" th:field="*{password}" placeholder="Wachtwoord (*)" class="form-control mb-4 col-4" />
+			Actief: <input type="checkbox" th:field="*{enabled}" name="Actief" th:checked="${user.enabled}" />
+			<br><br>
+			<button type="submit" class="btn btn-info col-2">Opslaan</button>
+		</form>
+
+		<hr>
+		<div th:if="${existing} == true">
+			<h3>Rollen</h3>
+			<table class="table table-bordered table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Rol</th>
+						<th></th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<tr th:each="aRole:${roles}">
+						<td th:text="${aRole.role}" />
+						<td><a th:href="@{/adressenboek/users/deleteRole/{username}/{role} (username=${aRole.username}, role=${aRole.role})}" th:text="Verwijder" class="btn btn-danger btn-sm" /></td>
+					</tr>
+				</tbody>
+				
+			</table>
+		`	<p>
+			<a th:href="@{/adressenboek/users/addRole/{username} (username=${user.username})}" class="btn btn-success">Rol toevoegen</a>
+		</div>
+		<hr>
+		<a th:href="@{/adressenboek/users/}" class="btn btn-link btn-sm mb-3">Terug naar gebruikerslijst</a>
+	
+	</div>
+</body>

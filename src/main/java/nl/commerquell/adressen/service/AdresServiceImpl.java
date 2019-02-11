@@ -42,7 +42,7 @@ public class AdresServiceImpl implements AdresService {
 
 	@Override
 	public List<Adres> findAll() {
-		return adresRepository.findAll();
+		return adresRepository.findAllByOrderByPostcodeAscHuisnrAsc();
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package nl.commerquell.adressen.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
@@ -43,7 +44,7 @@ public class Persoon {
 	@Column(name="telnr_mobiel")
 	private String mobielTelnr;
 	
-	@OneToOne
+	@OneToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="id", unique=true, nullable=false, updatable=false)
 	private PersoonAdres persoonAdres;
 	

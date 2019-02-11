@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.thymeleaf.org"></html>
+
+	<head>
+		<title>Verwijderen Rol</title>
+
+	    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!--  Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+	</head>
+	
+	<body>
+	<div class="container">
+		<h2 th:text="'Verwijderen Rol van ' + ${rol.username}" />
+		<hr>
+		<form action="#" th:action="@{/adressenboek/users/deleteRole}" th:object="${rol}" method="POST">
+			<input type="hidden" th:field= "*{username}"/>
+			<input type="hidden" th:field= "*{role}"/>
+			<br><br>
+			<button type="submit" class="btn btn-danger col-2">Verwijderen</button>
+		</form>
+		<hr>
+		<a th:href="@{/adressenboek/users/}" class="btn btn-link mb-3">Terug naar gebruikerslijst</a>
+	
+	</div>
+</body>
