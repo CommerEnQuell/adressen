@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+	<head>
+		<title>Query op personen</title>
+
+	    <!-- Required meta tags -->
+	    <meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+		<!--  Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" />
+	</head>
+	
+	<body>
+		<div class="container">
+			<h2>Criteria</h2>
+				<form action="#" th:action="@{/adressenboek/query/zoekPersonen}" th:object="${zoekPersoon}" method="POST">
+					<input type="text" th:field="*{voornaam}" placeholder="Voornaam" class="form-control mb-4 col-4" />
+					<input type="text" th:field="*{achternaam}" placeholder="Achternaam" class="form-control mb-4 col-4" />
+				<br><br>
+				<button type="submit" class="btn btn-success col-2">Zoeken</button>
+				</form>
+			<hr>
+			
+			<h2>Lijst van personen met adressen</h2>
+			<hr>
+			<table class="table table-bordered table-striped">
+				<thead class="thead-dark">
+					<tr>
+						<th>Voornaam</th>
+						<th align="center">Voorv.</th>
+						<th>Achternaam</th>
+						<th>Straat</th>
+						<th>Huisnr</th>
+						<th>Postcode</th>
+						<th>Woonplaats</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr th:each="iemand : ${personen}">
+						<td th:text="${iemand.voornaam}" />
+						<td align="center" th:text="${iemand.voorvoegsel}" />
+						<td th:text="${iemand.achternaam}" />
+						<td th:if="${iemand.persoonAdres} != null" th:text="${iemand.persoonAdres.adres.straat}" />
+						<td th:if="${iemand.persoonAdres} != null" th:text="${iemand.persoonAdres.adres.huisnr + ' ' + iemand.persoonAdres.adres.huisnrToev}" />
+						<td th:if="${iemand.persoonAdres} != null" th:text="${iemand.persoonAdres.adres.postcode}" />
+						<td th:if="${iemand.persoonAdres} != null" th:text="${iemand.persoonAdres.adres.plaats}" />
+						<td th:if="${iemand.persoonAdres} == null" colspan="4" />
+						<td><a th:href="@{/adressenboek/query/details/{id}(id=${iemand.id})}" class="btn btn-outline-danger">Details</a></td>
+					</tr>
+					
+				</tbody>
+			</table>
+			<hr>
+			<a th:href="@{/adressenboek/}" class="btn btn-link mb-3">
+				Homepage
+			</a>
+			
+		</div>
+	</body>
+</html>

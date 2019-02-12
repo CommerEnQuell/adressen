@@ -28,7 +28,6 @@ public class Role {
 	}
 
 	public String getRole() {
-		System.err.println("Getting the role for " + this);
 		String prefix = "ROLE_";
 		String theRole = role;
 		if (theRole.startsWith(prefix)) {

@@ -57,7 +57,6 @@ public final class Utils {
 		GregorianCalendar cal = (GregorianCalendar) GregorianCalendar.getInstance();
 		cal.clear();
 		cal.set(year, month, day);
-		System.err.println("Date set to " + day + "-" + month + "-" + year);
 
 		return cal.getTime();
 	}
@@ -183,5 +182,16 @@ public final class Utils {
 		SecurityContext context = (SecurityContext) session.getAttribute("SPRING_SECURITY_CONTEXT");
 		User theUser = (User) context.getAuthentication().getPrincipal();
 		return theUser;
+	}
+	
+	public static String like(String s) {
+		if (s == null || s.length() < 1) {
+			return "%";
+		}
+		String retval = s;
+		if (s.charAt(s.length() - 1) != '%') {
+			retval = s + "%";
+		}
+		return retval;
 	}
 }

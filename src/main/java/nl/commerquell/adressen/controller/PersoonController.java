@@ -80,7 +80,7 @@ public class PersoonController {
 	
 	@PostMapping("/savePersoon")
 	public String savePersoon(@ModelAttribute("persoon") Persoon dePersoon) {
-		System.out.println("Opslaan: " + dePersoon);
+		logger.info("Opslaan: " + dePersoon);
 		persoonService.save(dePersoon);
 		
 		return "redirect:/adressenboek/personen/";
@@ -88,7 +88,7 @@ public class PersoonController {
 	
 	@PostMapping("/deletePersoon")
 	public String deletePersoon(@ModelAttribute("persoon") Persoon dePersoon) {
-		System.out.println("Verwijderen: " + dePersoon);
+		logger.info("Verwijderen: " + dePersoon);
 		persoonService.deleteById(dePersoon.getId());
 		
 		return "redirect:/adressenboek/personen/";

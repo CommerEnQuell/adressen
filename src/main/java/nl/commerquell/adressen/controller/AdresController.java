@@ -1,6 +1,7 @@
 package nl.commerquell.adressen.controller;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import nl.commerquell.adressen.service.AdresService;
 @RequestMapping("/adressenboek/adressen")
 @Controller
 public class AdresController {
+	private static final Logger logger = Logger.getLogger(AdresController.class.getName());
 
 	private AdresService adresService;
 	
@@ -59,7 +61,7 @@ public class AdresController {
 	
 	@PostMapping("/saveAdres")
 	public String saveAdres(@ModelAttribute("adres") Adres hetAdres) {
-		System.out.println("Opslaan: " + hetAdres);
+		logger.info("Opslaan: " + hetAdres);
 		adresService.save(hetAdres);
 		
 		return "redirect:/adressenboek/adressen/";
@@ -67,7 +69,7 @@ public class AdresController {
 	
 	@PostMapping("/deleteAdres")
 	public String deleteAdres(@ModelAttribute("adres") Adres hetAdres) {
-		System.out.println("Verwijderen: " + hetAdres);
+		logger.info("Verwijderen: " + hetAdres);
 		adresService.deleteById(hetAdres.getId());
 		
 		return "redirect:/adressenboek/adressen/";

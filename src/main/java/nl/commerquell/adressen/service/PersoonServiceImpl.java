@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import nl.commerquell.adressen.dao.PersoonRepository;
 import nl.commerquell.adressen.entity.Persoon;
+import nl.commerquell.adressen.utils.Utils;
 
 @Service
 public class PersoonServiceImpl implements PersoonService {
@@ -41,6 +42,15 @@ public class PersoonServiceImpl implements PersoonService {
 		return persoonRepository.findAll(qbeFilter);
 	}
 
+
+	@Override
+	public List<Persoon> search(String voornaam, String achternaam) {
+		String deVoornaam = Utils.like(voornaam);
+		String deAchternaam = Utils.like(achternaam);
+		return persoonRepository.findAllByVoornaamAndAchternaam(deVoornaam, deAchternaam);
+		
+	}
+	
 	@Override
 	public void save(Persoon persoon) {
 		persoonRepository.save(persoon);

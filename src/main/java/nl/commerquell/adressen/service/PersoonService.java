@@ -14,6 +14,8 @@ public interface PersoonService {
 	
 	public List<Persoon> search(Example<Persoon> qbeFilter);
 	
+	public List<Persoon> search(String voornaam, String achternaam);
+	
 	public void save(Persoon Persoon);
 	
 	public void deleteById(int id);

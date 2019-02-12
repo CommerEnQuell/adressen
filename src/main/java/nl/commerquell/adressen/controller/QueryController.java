@@ -1,17 +1,21 @@
 package nl.commerquell.adressen.controller;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import nl.commerquell.adressen.entity.Adres;
 import nl.commerquell.adressen.entity.Persoon;
 import nl.commerquell.adressen.entity.PersoonAdres;
+import nl.commerquell.adressen.pojo.ZoekPersoon;
 import nl.commerquell.adressen.service.AdresService;
 import nl.commerquell.adressen.service.PersoonAdresService;
 import nl.commerquell.adressen.service.PersoonService;
@@ -19,6 +23,7 @@ import nl.commerquell.adressen.service.PersoonService;
 @RequestMapping("/adressenboek/query")
 @Controller
 public class QueryController {
+	private static final Logger logger = Logger.getLogger(QueryController.class.getName());
 	
 	private PersoonService persoonService;
 	private AdresService adresService;
@@ -83,5 +88,20 @@ public class QueryController {
 		theModel.addAttribute("persoon", persoon);
 		theModel.addAttribute("adres", adres);
 		return "persoon-details";
+	}
+	
+	@GetMapping("/zoekPersonen")
+	public String zoekPersonen(Model theModel) {
+		ZoekPersoon zoekPersoon = new ZoekPersoon();
+		theModel.addAttribute("zoekPersoon", zoekPersoon);
+		return "personen-query";
+	}
+	
+	@PostMapping("/zoekPersonen")
+	public String vindPersonen(@ModelAttribute("zoekPersoon") ZoekPersoon zoekPersoon, Model theModel) {
+		logger.info("Zoeken op " + zoekPersoon);
+		List<Persoon> personen = persoonService.search(zoekPersoon.getVoornaam(), zoekPersoon.getAchternaam());
+		theModel.addAttribute("personen", personen);
+		return "personen-query";
 	}
 }

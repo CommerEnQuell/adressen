@@ -2,6 +2,7 @@ package nl.commerquell.adressen.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,6 +24,7 @@ import nl.commerquell.adressen.service.UserService;
 @RequestMapping("/adressenboek/users")
 @Controller
 public class UsersController {
+	private static final Logger logger = Logger.getLogger(UsersController.class.getName());
 	
 	private UserService userService;
 	
@@ -96,6 +98,7 @@ public class UsersController {
 	@PostMapping("/saveRole")
 	public String saveRole(@ModelAttribute("role") Role theRole) {
 		roleService.save(theRole);
+		logger.info("Role added: " + theRole);
 		return "redirect:/adressenboek/users/modifyUser/" + theRole.getUsername();
 	}
 	
@@ -108,19 +111,19 @@ public class UsersController {
 		Role theRole = roleService.findById(theId);
 		theModel.addAttribute("rol", theRole);
 		
-		System.err.println("Role added to model: " + theRole);
+		logger.fine("Role added to model: " + theRole);
 		
 		return "rol-verwijderen";
 	}
 	
 	@PostMapping("/deleteRole")
 	public String deleteRole(@ModelAttribute("rol") Role theRole, Model theModel) {
-		System.err.println("Method deleteRole entered with role " + theRole);
+		logger.fine("Method deleteRole entered with role " + theRole);
 		String username = theRole.getUsername();
 		String roleId = theRole.getRole();
-		System.err.println("Role: " + theRole);
 		RoleId theId = new RoleId(username, roleId);
 		roleService.deleteById(theId);
+		logger.info("Role deleted: " + theRole);
 		return "redirect:/adressenboek/users/modifyUser/" + username;
 
 	}
