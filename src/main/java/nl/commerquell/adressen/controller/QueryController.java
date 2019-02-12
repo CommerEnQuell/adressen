@@ -4,6 +4,10 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import nl.commerquell.adressen.ApplicationConstants;
 import nl.commerquell.adressen.entity.Adres;
 import nl.commerquell.adressen.entity.Persoon;
 import nl.commerquell.adressen.entity.PersoonAdres;
@@ -25,6 +30,7 @@ import nl.commerquell.adressen.service.PersoonService;
 public class QueryController {
 	private static final Logger logger = Logger.getLogger(QueryController.class.getName());
 	
+	private int defaultPageSize;
 	private PersoonService persoonService;
 	private AdresService adresService;
 	private PersoonAdresService persoonAdresService;
@@ -32,6 +38,7 @@ public class QueryController {
 	@Autowired
 	public QueryController(PersoonService persoonService) {
 		this.persoonService = persoonService;
+		this.defaultPageSize = ApplicationConstants.DEFAULT_PAGE_SIZE;
 	}
 
 	@Autowired
@@ -45,8 +52,11 @@ public class QueryController {
 	}
 
 	@GetMapping("/")
-	public String personenEnAdressenlijst(Model theModel) {
-		List<Persoon> personen = persoonService.findAll();
+	public String personenEnAdressenlijst(@ModelAttribute("page") int pageNo, Model theModel) {
+//		List<Persoon> personen = persoonService.findAll();
+		PageRequest p = PageRequest.of(pageNo, defaultPageSize);
+		Page<Persoon> personen = persoonService.findAll(p);
+		System.err.println("Er zijn " + personen.getTotalElements() + " personen, verdeeld over " + personen.getTotalPages() + " pagina's");
 		for (Persoon persoon : personen) {
 			int pernId = persoon.getId();
 			PersoonAdres persoonAdres = persoonAdresService.findByPersoonId(pernId);

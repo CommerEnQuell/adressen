@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import nl.commerquell.adressen.dao.PersoonRepository;
@@ -35,6 +37,11 @@ public class PersoonServiceImpl implements PersoonService {
 	@Override
 	public List<Persoon> findAll() {
 		return persoonRepository.findAllByOrderByAchternaamAscVoorvoegselAscVoornaamAsc();
+	}
+	
+	@Override
+	public Page<Persoon> findAll(Pageable p) {
+		return persoonRepository.findAll(p);
 	}
 
 	@Override
