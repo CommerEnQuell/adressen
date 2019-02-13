@@ -47,6 +47,17 @@
 			<a th:href="@{/adressenboek/}" class="btn btn-link btn-sm mb-3">
 				Homepage
 			</a>
+			<hr>
+			<p>
+			<table align="center">
+				<tr>
+					<td align="left" width="60px"><a th:if="${currPage} > 2" th:href="@{/adressenboek/query/?page=1}">1</a></td>
+					<td><a th:if="${prevPage} >= 0" th:href="@{/adressenboek/query/?page={prevPage}(prevPage=${prevPage})}">Vorige</a></td>
+					<td align="center" width="120px" th:text="${currPage}" />
+					<td><a th:if="${nextPage} >= 0" th:href="@{/adressenboek/query/?page={nextPage}(nextPage=${nextPage})}">Volgende</a></td>
+					<td align="right" width="60px"><a th:if="${currPage} < ${pageCount - 1}" th:href="@{/adressenboek/query/?page={pages}(pages=${pageCount})}"><span th:text="${pageCount}" /></a></td>
+				</tr>
+			</table>
 		</div>
 	</body>
 </html>

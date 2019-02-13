@@ -18,7 +18,7 @@ public interface PersoonService {
 	
 	public List<Persoon> search(Example<Persoon> qbeFilter);
 	
-	public List<Persoon> search(String voornaam, String achternaam);
+	public Page<Persoon> search(String voornaam, String achternaam, Pageable p);
 	
 	public void save(Persoon Persoon);
 	

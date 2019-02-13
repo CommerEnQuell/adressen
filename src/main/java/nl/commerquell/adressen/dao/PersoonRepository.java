@@ -15,7 +15,7 @@ public interface PersoonRepository extends JpaRepository<Persoon, Integer> {
 	public List<Persoon> findAllByOrderByAchternaamAscVoorvoegselAscVoornaamAsc();
 	
 	@Query("SELECT p FROM Persoon p WHERE p.voornaam LIKE :voornaam AND p.achternaam LIKE :achternaam")
-	public List<Persoon> findAllByVoornaamAndAchternaam(@Param("voornaam") String voornaam, @Param("achternaam") String achternaam);
+	public Page<Persoon> findAllByVoornaamAndAchternaam(@Param("voornaam") String voornaam, @Param("achternaam") String achternaam, Pageable p);
 	
 	public Page<Persoon> findAll(Pageable p);
 

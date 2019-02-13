@@ -51,10 +51,10 @@ public class PersoonServiceImpl implements PersoonService {
 
 
 	@Override
-	public List<Persoon> search(String voornaam, String achternaam) {
+	public Page<Persoon> search(String voornaam, String achternaam, Pageable p) {
 		String deVoornaam = Utils.like(voornaam);
 		String deAchternaam = Utils.like(achternaam);
-		return persoonRepository.findAllByVoornaamAndAchternaam(deVoornaam, deAchternaam);
+		return persoonRepository.findAllByVoornaamAndAchternaam(deVoornaam, deAchternaam, p);
 		
 	}
 	

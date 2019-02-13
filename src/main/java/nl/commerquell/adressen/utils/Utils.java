@@ -6,8 +6,10 @@ import java.util.GregorianCalendar;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.ui.Model;
 
 public final class Utils {
 	private Utils() {}
@@ -193,5 +195,31 @@ public final class Utils {
 			retval = s + "%";
 		}
 		return retval;
+	}
+	
+	public static String toAddressBarParam(String s) {
+		if (isBlankOrEmpty(s)) {
+			return "";
+		}
+		StringBuffer buf = new StringBuffer(s);
+		int idx = buf.length();
+		while (idx > 0) {
+			idx--;
+			if (buf.charAt(idx) == '%') {
+				buf.insert(idx + 1, "25");
+			}
+			if (buf.charAt(idx) == '&') {
+				buf.replace(idx, idx + 1, "%26");
+			}
+			// TODO More special characters 
+		}
+		return buf.toString();
+	}
+	
+	public static void addPageingAttributes(Model theModel, Page<?> page, int pageNo) {
+		theModel.addAttribute("prevPage", page.hasPrevious() ? pageNo - 1 : -1);
+		theModel.addAttribute("currPage", pageNo);
+		theModel.addAttribute("nextPage", page.hasNext() ? pageNo + 1 : -1);
+		theModel.addAttribute("pageCount", page.getTotalPages());
 	}
 }
