@@ -37,7 +37,12 @@
 						<td th:text="${iemand.persoonAdres.adres.straat}" />
 						<td th:text="${iemand.persoonAdres.adres.huisnr + ' ' + iemand.persoonAdres.adres.huisnrToev}" />
 						<td th:text="${iemand.persoonAdres.adres.postcode}" />
-						<td th:text="${iemand.persoonAdres.adres.plaats}" />
+						<td>
+						    <span th:text="${iemand.persoonAdres.adres.plaats}" />
+						    <span th:if="${iemand.persoonAdres.adres.landafk} != null">
+		 				    	<span th:unless="${iemand.persoonAdres.adres.landafk} == 'NL'" th:text="' (' + ${iemand.persoonAdres.adres.landafk} + ')'" />
+						    </span>
+						</td>
 						<td><a th:href="@{/adressenboek/query/details/{id}(id=${iemand.id})}" class="btn btn-outline-danger">Details</a></td>
 					</tr>
 					

@@ -28,6 +28,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         			.antMatchers("/adressenboek/query/**").hasAnyRole("READER", "USER", "ADMIN")
         			.antMatchers("/adressenboek/users/**").hasRole("ADMIN")
 					.antMatchers("/adressenboek/password/**").hasAnyRole("DUMBO", "READER", "USER", "ADMIN")
+					.antMatchers("/actuator/**").hasAnyRole("MONITOR", "ADMIN")
       			.and()
         			.formLogin()
         				.loginPage("/adressenboek/login/")
