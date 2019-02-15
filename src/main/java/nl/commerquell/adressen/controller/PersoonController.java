@@ -30,20 +30,10 @@ public class PersoonController {
 	private AdresService adresService;
 	
 	@Autowired
-	public PersoonController(PersoonService thePersoonService) {
+	public PersoonController(PersoonService thePersoonService, AdresService theAdresService, PersoonAdresService thePersoonAdresService) {
 		this.persoonService = thePersoonService;
-	}
-	
-	@Autowired
-	public void setPersoonAdresService(PersoonAdresService persoonAdresService) {
-		this.persoonAdresService = persoonAdresService;
-		logger.info("PersoonAdresService " + (persoonAdresService != null ? "set" : "is null"));
-	}
-
-	@Autowired
-	public void setAdresService(AdresService adresService) {
-		this.adresService = adresService;
-		logger.info("AdresService " + (adresService != null ? "set" : "is null"));
+		this.adresService = theAdresService;
+		this.persoonAdresService = thePersoonAdresService;
 	}
 
 	@GetMapping("/")

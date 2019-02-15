@@ -27,17 +27,12 @@ public class UsersController {
 	private static final Logger logger = Logger.getLogger(UsersController.class.getName());
 	
 	private UserService userService;
-	
 	private RoleService roleService;
 	
 	@Autowired
-	public UsersController(UserService userService) {
-		this.userService = userService;
-	}
-	
-	@Autowired
-	public void setRoleService(RoleService roleService) {
-		this.roleService = roleService;
+	public UsersController(UserService theUserService, RoleService theRoleService) {
+		this.userService = theUserService;
+		this.roleService = theRoleService;
 	}
 	
 	@GetMapping("/")

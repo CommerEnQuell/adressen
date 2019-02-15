@@ -2,8 +2,9 @@ package nl.commerquell.adressen.controller;
 
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +16,8 @@ import nl.commerquell.adressen.utils.Utils;
 @RequestMapping("/adressenboek")
 @Controller
 public class HomeController {
+	@Autowired
+	private Environment env;
 	
 	@GetMapping("/")
 	public String goHome(HttpSession session, Model theModel) {
@@ -32,6 +35,7 @@ public class HomeController {
 				isReader = true;
 			}
 		}
+		theModel.addAttribute("appVersion", env.getProperty("info.app.version", "x.y.z"));
 		theModel.addAttribute("isAdmin", Boolean.valueOf(isAdmin));
 		theModel.addAttribute("isReader", Boolean.valueOf(isReader));
 		theModel.addAttribute("isUser", Boolean.valueOf(isUser));

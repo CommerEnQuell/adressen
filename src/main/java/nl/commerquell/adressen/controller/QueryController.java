@@ -38,18 +38,10 @@ public class QueryController {
 	private ApplicationConstants applicationConstants;
 	
 	@Autowired
-	public QueryController(PersoonService persoonService) {
-		this.persoonService = persoonService;
-	}
-
-	@Autowired
-	public void setAdresService(AdresService adresService) {
-		this.adresService = adresService;
-	}
-
-	@Autowired
-	public void setPersoonAdresService(PersoonAdresService persoonAdresService) {
-		this.persoonAdresService = persoonAdresService;
+	public QueryController(PersoonService thePersoonService, AdresService theAdresService, PersoonAdresService thePersoonAdresService) {
+		this.persoonService = thePersoonService;
+		this.adresService = theAdresService;
+		this.persoonAdresService = thePersoonAdresService;
 	}
 
 	@GetMapping("/")
