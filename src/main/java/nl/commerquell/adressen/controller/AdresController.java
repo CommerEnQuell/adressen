@@ -27,7 +27,7 @@ public class AdresController {
 		this.adresService = theAdresService;
 	}
 	
-	@GetMapping("/")
+	@GetMapping({"", "/"})
 	public String findAll(Model theModel) {
 		List<Adres> adressen = adresService.findAll();
 		theModel.addAttribute("adressen", adressen);

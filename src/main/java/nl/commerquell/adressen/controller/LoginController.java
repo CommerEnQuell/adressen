@@ -31,7 +31,7 @@ public class LoginController {
 		this.userService = userService;
 	}
 	
-	@GetMapping("/")
+	@GetMapping({"", "/"})
 	public String doLogin() {
 		return "login-form";
 	}

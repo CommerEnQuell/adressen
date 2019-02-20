@@ -44,7 +44,7 @@ public class QueryController {
 		this.persoonAdresService = thePersoonAdresService;
 	}
 
-	@GetMapping("/")
+	@GetMapping({"", "/"})
 	public String personenEnAdressenlijst(@ModelAttribute("page") int pageNo, Model theModel) {
 //		List<Persoon> personen = persoonService.findAll();
 		Sort theSort = Sort.by("achternaam", "voorvoegsel", "voornaam", "id");

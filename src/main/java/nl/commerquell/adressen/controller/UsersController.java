@@ -35,7 +35,7 @@ public class UsersController {
 		this.roleService = theRoleService;
 	}
 	
-	@GetMapping("/")
+	@GetMapping({"", "/"})
 	public String listUsers(Model theModel) {
 		List<User> users = userService.findAll();
 		theModel.addAttribute("users", users);

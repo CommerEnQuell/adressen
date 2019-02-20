@@ -36,7 +36,7 @@ public class PersoonController {
 		this.persoonAdresService = thePersoonAdresService;
 	}
 
-	@GetMapping("/")
+	@GetMapping({"", "/"})
 	public String findAll(Model theModel) {
 		List<Persoon> personen = persoonService.findAll();
 		theModel.addAttribute("personen", personen);

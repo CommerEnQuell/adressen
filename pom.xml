@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>nl.commerquell</groupId>
 	<artifactId>adressen</artifactId>
-	<version>0.1.3</version>
+	<version>0.1.4</version>
 	<packaging>jar</packaging>
 	<name>adressen</name>
 	<description>Demo project for Spring Boot</description>

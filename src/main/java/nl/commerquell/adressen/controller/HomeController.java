@@ -19,7 +19,7 @@ public class HomeController {
 	@Autowired
 	private Environment env;
 	
-	@GetMapping("/")
+	@GetMapping({"", "/"})
 	public String goHome(HttpSession session, Model theModel) {
 		User theUser = Utils.getUserFromSession(session);
 		theModel.addAttribute("loginUser", theUser.getUsername());
